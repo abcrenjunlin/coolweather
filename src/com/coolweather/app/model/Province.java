@@ -13,7 +13,7 @@ public class Province {
 	public String getProvinceName(){
 		return provinceName;
 	}
-	public void setProvinceName(String proviceName){
+	public void setProvinceName(String provinceName){
 		this.provinceName=provinceName;
 	}
 	public String getProvinceCode(){
