@@ -13,7 +13,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 public class CoolWeatherDB {
-		public static final String DB_NAME="Cool_weather";
+		public static final String DB_NAME="cool_weather";
 		public static final int VERSION=1;
 		private static CoolWeatherDB coolWeatherDB;
 		private SQLiteDatabase db;
@@ -63,13 +63,13 @@ public class CoolWeatherDB {
 		}
 		public List<City>loadCities(int provinceId){
 			List<City>list=new ArrayList<City>();
-			Cursor cursor=db.query("City", null, "province_id=?", new String[]{}, null, null, null);
+			Cursor cursor=db.query("City", null, "province_id=?", new String[]{String.valueOf(provinceId)}, null, null, null);
 			if(cursor.moveToFirst()){
 				do{
 					City city=new City();
 					city.setId(cursor.getInt(cursor.getColumnIndex("id")));
-					city.setCityName(cursor.getString(cursor.getColumnIndex("province_name")));
-					city.setCityCode(cursor.getString(cursor.getColumnIndex("province_code")));
+					city.setCityName(cursor.getString(cursor.getColumnIndex("city_name")));
+					city.setCityCode(cursor.getString(cursor.getColumnIndex("city_code")));
 					city.setProvinceId(provinceId);
 					list.add(city);
 				}while(cursor.moveToNext());
@@ -90,13 +90,13 @@ public class CoolWeatherDB {
 		}
 		public List<County>loadCounties(int cityId){
 			List<County>list=new ArrayList<County>();
-			Cursor cursor=db.query("County", null, "city_id=?", new String[]{}, null, null, null);
+			Cursor cursor=db.query("County", null, "city_id=?", new String[]{String.valueOf(cityId)}, null, null, null);
 			if(cursor.moveToFirst()){
 				do{
 					County county=new County();
 					county.setId(cursor.getInt(cursor.getColumnIndex("id")));
-					county.setCountyName(cursor.getString(cursor.getColumnIndex("province_name")));
-					county.setCountyCode(cursor.getString(cursor.getColumnIndex("province_code")));
+					county.setCountyName(cursor.getString(cursor.getColumnIndex("county_name")));
+					county.setCountyCode(cursor.getString(cursor.getColumnIndex("county_code")));
 					county.setCityId(cityId);
 					list.add(county);
 				}while(cursor.moveToNext());
